@@ -12,7 +12,7 @@ const Alldevelopers = (props) => {
 
   const navigate = useNavigate();
   const { getdiet, diets, updatediet } = context;
-  const [diet, setdiet] = useState({ id: "", eename: "", eecontact: "", eedescr: "", date: "" });
+  const [diet, setdiet] = useState({ id: "", eename: "", eeday: "", eedescr: "", date: "" });
   const [flag,setflag] = useState(false);
 
   useEffect(() => {
@@ -26,10 +26,10 @@ const Alldevelopers = (props) => {
 
   const updateDiet = (curdiet) => {
     ref.current.click();
-    setdiet({ id: curdiet._id, eename: curdiet.name, eecontact: curdiet.contactNum , eedescr: curdiet.description })
+    setdiet({ id: curdiet._id, eename: curdiet.name, eeday: curdiet.day , eedescr: curdiet.description })
   }
   const handleclick = (e) => {
-    updatediet(diet.id, diet.eemail, diet.eecontact, diet.eedescr);
+    updatediet(diet.id, diet.eemail, diet.eeday, diet.eedescr);
     refclose.current.click();
     props.showAlert("")
   }
@@ -59,10 +59,7 @@ const Alldevelopers = (props) => {
                   <label htmlFor="description" className="form-label">Description</label>
                   <input type="text" className="form-control" id="eedescr" name='eedescr' value={diet.eedescr} onChange={onchange} minLength={5} required />
                 </div>
-                <div className="mb-3">
-                  <label htmlFor="tag" className="form-label">Github</label>
-                  <input type="text" className="form-control" id="egithub" name='egithub' value={diet.egithub} onChange={onchange} />
-                </div>
+               
               </form>
             </div>
             <div className="modal-footer">
@@ -78,7 +75,7 @@ const Alldevelopers = (props) => {
         {diets.length === 0 && "No Developers to Display 🥺🥺🥺"}
       </div>
       {diets.map((diet) => {
-        return <Diet key={diet._id} diet={diet} updateDev={updatediet} flag = {flag}/>
+        return <Diet key={diet._id} Diet={diet} updateDev={updatediet} flag = {flag}/>
       })}
     </>
   )

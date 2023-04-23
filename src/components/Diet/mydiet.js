@@ -9,7 +9,7 @@ const MyProfiles = (props) => {
     const navigate = useNavigate();
 
     const [diets, setdiets] = useState([]);
-    const [diet, setdiet] = useState({ id: "",eename:"", eemail: "", eecontact: "", eedescr: ""});
+    const [diet, setdiet] = useState({ id: "",eename:"", eemail: "", eeday: "", eedescr: ""});
     const [flag,setflag] = useState(true);
 
     useEffect(() => {
@@ -23,10 +23,10 @@ const MyProfiles = (props) => {
     //   const [dev, setdev] = useState({ id: "",eename:"", eemail: "",erole:"", eecontact: "", eedescr: "", egithub: "", elink: "",eresumelink:"",eachievements:"" });
     const updateDiet = (curdiet) => { 
         ref.current.click();
-        setdiet({ id: curdiet._id,  eename:curdiet.name , eemail: curdiet.email, erole:curdiet.role,eecontact: curdiet.contactNum, eedescr: curdiet.description })
+        setdiet({ id: curdiet._id,  eename:curdiet.name , eemail: curdiet.email,eeday: curdiet.day, eedescr: curdiet.description })
     }
     const handleclick = (e) => {
-        updateDiet(diet.id, diet.eename,diet.eemail, diet.eecontact, diet.eedescr);
+        updateDiet(diet.id, diet.eename,diet.eemail, diet.eeday, diet.eedescr);
         refclose.current.click();
         props.showAlert("Updated Successfully","success");
     }
@@ -34,7 +34,7 @@ const MyProfiles = (props) => {
         setdiet({ ...diet, [e.target.name]: e.target.value });
     }
     const getprofile = async () => {
-        const response = await fetch('https://developerrvit.onrender.com/api/v1/fetchuserprofile', {
+        const response = await fetch('https://punegym.onrender.com/api/v1/fetchuserprofile', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -45,14 +45,14 @@ const MyProfiles = (props) => {
         console.log(json);
         setdiets(json);
     }
-    const updatediet = async (id, name, email, contactNum, description) => {
-        const response = await fetch(`https://developerrvit.onrender.com/api/v1/updateprofile/${id}`, {
+    const updatediet = async (id, name, email, day, description) => {
+        const response = await fetch(`https://punegym.onrender.com/api/v1/updateprofile/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'authtoken': localStorage.getItem('authtoken')
             },
-            body: JSON.stringify({ name, email, contactNum, description})
+            body: JSON.stringify({ name, email, day, description})
         })
         const json = await response.json();
         let newdiets = JSON.parse(JSON.stringify(diets));
@@ -61,7 +61,7 @@ const MyProfiles = (props) => {
             if (element._id === id) {
                 newdiets[index].name = name;
                 newdiets[index].email = email;
-                newdiets[index].contactNum = contactNum;
+                newdiets[index].day = day;
                 newdiets[index].description = description;
                 break;
             }
@@ -96,14 +96,11 @@ const MyProfiles = (props) => {
                                 </div>
                                 
                                 {/* role */}
-                                <div className="mb-3">
-                                    <label htmlFor="role" className="form-label">Role</label>
-                                    <input type="text" className="form-control" id="erole" name='erole' value={diet.erole} onChange={onchange} />
-                                </div>
+                                
                                 {/* Contact num */}
                                 <div className="mb-3">
-                                    <label htmlFor="contactNum" className="form-label">contactNum</label>
-                                    <input type="text" className="form-control" id="econtactNum" name='econtactNum' value={diet.eecontact} onChange={onchange} />
+                                    <label htmlFor="contactNum" className="form-label">Day</label>
+                                    <input type="text" className="form-control" id="eday" name='eday' value={diet.eeday} onChange={onchange} />
                                 </div>
                                 {/* description  */}
                                 <div className="mb-3">

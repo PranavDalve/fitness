@@ -17,12 +17,12 @@ const AddProf = (props) => {
     
     const context = useContext(DietContext);
     const { adddiet } = context;
-    const [Diet, SetDiet] = useState({ name: "", email: "", role: "", contactNum: "", description: ""});
+    const [Diet, SetDiet] = useState({ name: "", email: "",  day: "", description: ""});
 
     const handleclick = (e) => {
         e.preventDefault();
-        adddiet(Diet.name, Diet.email, Diet.role, Diet.contactNum, Diet.description);
-        SetDiet({ name: "", email: "", role: "", contactNum: "", description: "" })
+        adddiet(Diet.name, Diet.email, Diet.day, Diet.description);
+        SetDiet({ name: "", email: "", day: "", description: "" })
         props.showAlert("Added successfully", "success");
     }
     const onchange = (e) => {
@@ -43,12 +43,8 @@ const AddProf = (props) => {
                         <input type="email" className="form-control" id="email" name='email' aria-describedby="emailHelp" value={Diet.email} onChange={onchange} minLength={5} required />
                     </div>
                     <div className="my-3">
-                        <label htmlFor="role" className="form-label">role</label>
-                        <input type="text" className="form-control" id="role" name='role' value={Diet.role} onChange={onchange} minLength={5} required />
-                    </div>
-                    <div className="my-3">
-                        <label htmlFor="contactNum" className="form-label">contactNum</label>
-                        <input type="text" className="form-control" id="contactNum" name='contactNum' value={Diet.contactNum} onChange={onchange} minLength={5} required />
+                        <label htmlFor="contactNum" className="form-label">Day</label>
+                        <input type="text" className="form-control" id="day" name='day' value={Diet.day} onChange={onchange} minLength={5} required />
                     </div>
                     <div className="my-3">
                         <label htmlFor="contactNum" className="form-label">description</label>

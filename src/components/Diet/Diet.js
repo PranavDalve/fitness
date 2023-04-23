@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 import formatDistance from 'date-fns/formatDistance'
-import DevContext from '../../context/Diets/DietContext';
 import './Diet.css'
+import DietContext from '../../context/Diets/DietContext';
 const Diet = (props) => {
 
     const { Diet, updateDiet } = props;
-    const context = useContext(DevContext);
+    const context = useContext(DietContext);
     const datestr = Diet.date;
 
     const str = formatDistance(
@@ -35,21 +35,16 @@ const Diet = (props) => {
                     <h5 class="card-title ">{Diet.name}</h5>
                     <p class="card-text">{Diet.description}</p>
                     <h6>{Diet.email}</h6>
-                    <a href={Diet.github}>Github</a> <br></br>
-                    <a href={Diet.linkedin}>linkedin</a>
-                    <p>{Diet.contactNum}</p>
-                    {/* <a href="/" class="btn btn-outline-dark">Let's make collabration</a> */}
+                   
+                    <p>{Diet.day}</p>
+                    <a href="/" class="btn btn-outline-dark">Let's make collabration</a>
                     <button className='btn btn-outline-dark'>Let's make collabration</button>
                 </div>
                 <div>
                   {props.flag &&   <i className="fa-solid fa-trash-can  mx-2" onClick={() => { deleteDiet(Diet._id); props.showAlert("Deleted Successfully","success") }}></i>}
                    {props.flag &&  <i className="fa-solid fa-pen-to-square mx-2" onClick={() => { updateDiet(Diet); }}></i>}
                 </div>
-                <div class="card-footer text-muted">
-                    {/* {developer.date} */}
-                    {/* {str} */}
-                    {datefinal}
-                </div>
+                
             </div>
         </div>
     )
@@ -57,3 +52,10 @@ const Diet = (props) => {
 
 export default Diet;
 
+
+
+{/* <div class="card-footer text-muted">
+                </div> */}
+                    {/* {developer.date} */}
+                    // {datefinal}
+                    {/* {str} */}

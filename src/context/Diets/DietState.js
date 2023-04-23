@@ -7,12 +7,12 @@ const host = process.env.HOST;
 const DietState = (props) => {
 
     const Dietintial = [];
-    const [diets, setdiets] = useState(Dietintial);
+    const [diets, setdiets] = useState([]);
     const [mydiets, setmydiets] = useState([]);
 
     // function to fetch all the developers from the database.
     const getdiet = async () => {
-        const response = await fetch('https://developerrvit.onrender.com/api/v1/getalldiets', {
+        const response = await fetch('https://punegym.onrender.com/api/v1/getalldiet', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -24,15 +24,15 @@ const DietState = (props) => {
         setdiets(json);
     }
     // add developer
-    const adddiet = async (name, email, role, contactNum, description, github, linkedin, resumelink, achievements) => {
-        const response = await fetch(`https://developerrvit.onrender.com/api/v1/adddevelopers`, {
+    const adddiet = async (name, email, contactNum, description) => {
+        const response = await fetch(`https://punegym.onrender.com/api/v1/adddiet`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'authtoken': localStorage.getItem('authtoken')
 
             },
-            body: JSON.stringify({ name, email, role, contactNum, description, github, linkedin, resumelink, achievements })
+            body: JSON.stringify({ name, email, contactNum, description })
         })
         const diet = await response.json();
         console.log("Adding a  developer profile. ");
@@ -42,7 +42,7 @@ const DietState = (props) => {
     }
     // delete developer
     const deletediet = async (id) => {
-        const response = await fetch(`https://developerrvit.onrender.com/api/v1/delete/${id}`, {
+        const response = await fetch(`https://punegym.onrender.com/api/v1/delete/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ const DietState = (props) => {
     }
     // update developer
     const updatediet = async (id,name,email,contactNum,description) => {
-        const response = await fetch(`https://developerrvit.onrender.com/api/v1/updateprofile/${id}`, {
+        const response = await fetch(`https://punegym.onrender.com/api/v1/updateprofile/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ const DietState = (props) => {
     const reqintial = [];
     const [reqs, setreqs] = useState(reqintial)
     // const getreq = async () => {
-    //     const response = await fetch('https://developerrvit.onrender.com/api/v1/getallrequire', {
+    //     const response = await fetch('https://punegym.onrender.com/api/v1/getallrequire', {
     //         // const response = await fetch('http://localhost:5000/api/v1/getallrequire', {
     //         method: 'GET',
     //         headers: {
@@ -111,7 +111,7 @@ const DietState = (props) => {
     // }
 
     // const addrequire = async (Title, Technologies, description, deadline, email, contactNum) => {
-    //     const response = await fetch(`https://developerrvit.onrender.com/api/v1/addrequire`, {
+    //     const response = await fetch(`https://punegym.onrender.com/api/v1/addrequire`, {
     //         method: 'POST',
     //         headers: {
     //             'Content-Type': 'application/json',
@@ -126,7 +126,7 @@ const DietState = (props) => {
     // }
     // const UpdateReq = async (id, Title, Technologies, description, deadline, email, contactNum) => {
 
-    //     const response = await fetch(`https://developerrvit.onrender.com/api/v1/updatereq/${id}`, {
+    //     const response = await fetch(`https://punegym.onrender.com/api/v1/updatereq/${id}`, {
     //         method: 'PUT',
     //         headers: {
     //             'Content-Type': 'application/json',
@@ -168,7 +168,7 @@ const DietState = (props) => {
     
     // myrequirements : 
     // const deletereq = async(id)=>{
-    //     const response = await fetch(`https://developerrvit.onrender.com/api/v1/deletereq/${id}`,{
+    //     const response = await fetch(`https://punegym.onrender.com/api/v1/deletereq/${id}`,{
     //       method: 'DELETE',
     //       headers: {
     //           'Content-Type': 'application/json',
@@ -187,7 +187,7 @@ const DietState = (props) => {
 
       //get my requirements ; 
 //       const getmyreq = async () => {
-//         const response = await fetch('https://developerrvit.onrender.com/api/v1/getmyreq', {
+//         const response = await fetch('https://punegym.onrender.com/api/v1/getmyreq', {
 //           method: 'GET',
 //           headers: {
 //             'Content-Type': 'application/json',
@@ -201,7 +201,7 @@ const DietState = (props) => {
 //       // update my requirements. 
 //     const updatemyreq = async (id, Title, Technologies, description, deadline, email, contactNum) => {
 //     // localhost:5000/api/v1/updatereq/6360c04378854a0264692e1d
-//     const response = await fetch(`https://developerrvit.onrender.com/api/v1/updatereq/${id}`, {
+//     const response = await fetch(`https://punegym.onrender.com/api/v1/updatereq/${id}`, {
 //       method: 'PUT',
 //       headers: {
 //         'Content-Type': 'application/json',

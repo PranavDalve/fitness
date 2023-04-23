@@ -11,6 +11,7 @@ import DashBoard from './components/DashBoard';
 import SignUp from './components/Auth/SignUp';
 import AddDiet from './components/Diet/AddDietProf';
 import MyDiet from './components/Diet/mydiet';
+import Home from './pages/Home';
 
 import { useState } from 'react';
 function App() {
@@ -38,6 +39,7 @@ function App() {
               <Route exact path="/login" element={<Login showAlert={showAlert} />} />
               <Route exact path="/signup" element={<SignUp showAlert={showAlert} />} />
               <Route exact path="/alldiet" element={<AllDiet showAlert={showAlert} />} />
+              <Route exact path="/home" element={<Home  />} />
               <Route exact path="/aboutus" element={<AboutUs />} />
               <Route exact path="/adddiet" element={<AddDiet showAlert={showAlert} />} />
               <Route exact path="/mydiet" element={<MyDiet showAlert={showAlert} />} />
